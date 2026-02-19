@@ -1,0 +1,32 @@
+// unittesting fruitful functions
+#include <iostream>
+#include <cassert>
+
+using namespace std;
+
+// function adds two numbers and returns the sum
+int add_func(int num1, int num2)
+{
+  return num1 + num2;
+}
+
+int main()
+{
+  int answer;
+  int num1, num2;
+  num1 = 100;
+  num2 = 1199;
+  answer = add_func(10, 5);
+  cout << "answer = " << answer << endl;
+  assert(answer == 15);
+  cerr << "first assertion passed\n";
+  // directly calling and testing function
+  assert(add_func(3, 7) == 10);
+  cerr << "2nd assertion passed\n";
+  // write 2 more test cases...
+  assert(add_func(-10, -5) == -15);
+  assert(add_func(-5, 5) == 0);
+  assert(add_func(num1, num2) == 1299);
+  cerr << "all test cases passed!\n";
+  return 0;
+}
