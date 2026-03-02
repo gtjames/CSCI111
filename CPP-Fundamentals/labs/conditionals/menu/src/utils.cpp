@@ -152,12 +152,18 @@ bool program()
     case 2:
     {
         // FIXME8: call get_two_numbers function
+        get_two_numbers(num1, num2);
         // FIXME9: call find_difference function and print the result
+        double diff = find_difference(num1, num2);
+        printf("%.2f - %.2f = %.2f\n", num1, num2, diff);
         break;
     }
     case 3:
     {
         // FIXME10: get two numbers and find their product using functions
+        get_two_numbers(num1, num2);
+        double product = find_product(num1, num2);
+        printf("%.2f * %.2f = %.2f\n", num1, num2, product);
         break;
     }
     // FIXME11: complete the rest of the cases 4, 6, and 7
