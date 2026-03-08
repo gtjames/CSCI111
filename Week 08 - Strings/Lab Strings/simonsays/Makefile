@@ -8,10 +8,11 @@ CXX = g++
 CXXFLAGS = -c -g -Wall -std=c++17
 
 # the build target executable file; .exe is not required
-PROGRAM = simonsays.exe
+PROGRAM = simonsays
 
 # list .cpp files separated by space
-CPPFILES = main.cpp
+CPPFILES = main.cpp answer.cpp
+TEST_FILES = $(wildcard tests/*.cpp)
 
 # make build rule/default rule that'll be run when we run "make" or make build
 # first compile each file to object file
@@ -39,5 +40,10 @@ kattistest:
 	cat ./sample_tests/3.in | ./$(PROGRAM) | diff - ./sample_tests/3.ans
 	@echo "All Test Cases Passed!"
 
+
+doctest:
+	$(CXX) -std=c++17 -I tests $(TEST_FILES) answer.cpp -o doctest_runner
+	./doctest_runner
+	
 all: build unittest clean
 	@printf "All good!\n"

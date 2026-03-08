@@ -1,6 +1,15 @@
 #include <iostream>
 using namespace std;
 
+
+void printLine(char left, char middle, char right, int size) {
+    cout << left;
+    for (int i = 0; i < size - 2; i++) {
+        cout << middle;
+    }
+    cout << right << endl;
+}
+
 int main() {
     int size;
     
@@ -100,12 +109,4 @@ int main() {
     }
     
     return 0;
-}
-
-void printLine(char left, char middle, char right, int size) {
-    cout << left;
-    for (int i = 0; i < size - 2; i++) {
-        cout << middle;
-    }
-    cout << right << endl;
 }

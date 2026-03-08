@@ -28,16 +28,10 @@ void solve();
 int main(int argc, char* argv[]) {
   if (argc == 2 and string(argv[1]) == "test") {
     // FIXME1: call testAnswer function
+    testAnswer();
   }
   else
     solve();
-}
-
-string answer(const string &line) {
-  // FIXME2: If the line starts with "Simon says", return rest of the line after says
-  // including the space after says, otherwise return empty string ""
-  // Hint: use find method on line object
-  return "";
 }
 
 // unit testing answer()
@@ -46,8 +40,10 @@ void testAnswer() {
   // let's double check what the returned answer is
   cerr << "ans = " << ans << endl;
   assert(ans == " laugh!"); 
-  assert(answer("Write more programs.") == "");
   // FIXME3: write at least two test cases to test answer()
+  assert(answer("Simon says Practice Practice Practice.") == " Practice Practice Practice.");
+  assert(answer("Simon says Be Cool.") == " Be Cool.");
+  assert(answer("Do nothing.") == "");
   cerr << "All test cases passed!\n";
 }
 
@@ -57,12 +53,18 @@ void solve() {
   int N;
   cin >> N;
   //FIXME4 : read and discard \n left behind
+  cin.ignore(1000, '\n');  // ignore the newline character left behind by cin
+
   while (N--) {
     // Note: i. string consists of phrase with spaces
     // ii. don't print an empty line if the line doesn't start with "Simon says"
     // FIXME5: read the whole line into line 
+    getline(cin, line);  // read the actual string input
     // FIXME6: call answer function and store the returned value into ans
+    ans = answer(line);
+
     if (ans == "") continue;
     // FIXME7: print ans
+    cout << ans << endl;
   }
 }

@@ -1,4 +1,4 @@
-/*
+    /*
 FIXME1: Write programmer & program information
 FIXME2: Write algorithm steps as comments
 */
@@ -13,6 +13,10 @@ using namespace std;
 bool isPalindrome(string);
 bool isPalindrome1(string);
 void test();
+string removeSpaces(const string& input);
+string toUpper(const string& input);
+string toLower(const string& input);
+
  
 //main function that can take some command line arguments
 int main(int argc, char* argv[])
@@ -32,7 +36,7 @@ int main(int argc, char* argv[])
       	getline(cin, input, '\n');//read until the end of line character is found
       	
         // FXIME5: change isPalindrome to isPalindrome1 once the function is fixed 
-        palin = isPalindrome1(input);
+        palin = isPalindrome(input);
  
       	if (palin == true)
            	cout << "The phrase \"" << input << "\" is a palindrome." << endl;
@@ -59,8 +63,17 @@ int main(int argc, char* argv[])
 bool isPalindrome(string phrase)
 {
  	bool isPalin = true;
-    //FIXME3: implement the rest of the function using
-    //the given algorithm in step #3...
+    phrase = removeSpaces(phrase);
+    phrase = toLower(phrase);
+    for (int i = 0; i < phrase.size()/2; i++)
+    {
+        if (phrase.at(i) != phrase.at(phrase.size() - 1 - i))
+        {
+            isPalin = false;
+            break;
+        }
+    }
+
     return isPalin;
 }
 
@@ -82,10 +95,42 @@ bool isPalindrome1(string phrase) {
 
 // test function
 void test() {
-    assert(isPalindrome1("Bob") == true);
-    assert(isPalindrome1("home") == false);
-    assert(isPalindrome1("Racecar") == true);
-    assert(isPalindrome1("Race car") == false);
+    assert(isPalindrome("Bob") == true);
+    assert(isPalindrome("home") == false);
+    assert(isPalindrome("Racecar") == true);
+    assert(isPalindrome("Race car") == false);
     // FIXME4: Write at least 4 test cases to test isPalindrome function
     cout << "all test cases passed!\n";
+}
+
+string removeSpaces(const string& input) {
+    string result;
+
+    for (char c : input)
+    {
+        if (c != ' ')
+            result += c;
+    }
+
+    return result;
+}
+
+string toLower(const string& input)
+{
+    string result = input;
+
+    for (char& c : result)
+        c = std::tolower(static_cast<unsigned char>(c));
+
+    return result;
+}
+
+string toUpper(const string& input)
+{
+    string result = input;
+
+    for (char& c : result)
+        c = std::toupper(static_cast<unsigned char>(c));
+
+    return result;
 }
