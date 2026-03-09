@@ -41,11 +41,47 @@ void showMenu(void);
 OPERATION getOperation(char);
 void unittest();
 
+struct Student {
+    int id;
+    string firstName;
+    string lastName;
+    char note[1024-64];
+    double gpa;
+};
+
+void updStudent(int id, Student &s, string firstName, string lastName, double gpa) {
+    s.id        = id;
+    s.firstName = firstName;
+    s.lastName  = lastName;
+    s.gpa       = gpa;
+}
+
+void cpyStudent(int id, Student s, string firstName, string lastName, double gpa) {
+    s.id        = id;
+    s.firstName = firstName;
+    s.lastName  = lastName;
+    s.gpa       = gpa;
+}
+
 int main(int argc, char* argv[]) {
     // FIXME1 - Call unittest function if "test" argument is passed to main
     // exit the program after calling unittest
 
+    Student student1;
+
+    student1.id        = 1001;
+    student1.firstName = "Ali";
+    student1.lastName  = "Johns";
+    student1.gpa       = 3.85;
+
+    cout << "OG : " << student1.id << " " << student1.firstName << " " << student1.lastName << " " << student1.gpa << endl;
+    cpyStudent(1003, student1, "Sam", "Brown", 3.65);
+    cout << "Cpy: " << student1.id << " " << student1.firstName << " " << student1.lastName << " " << student1.gpa << endl;   
+    updStudent(1002, student1, "Bob", "Smith", 3.75);
+    cout << "Upd: " << student1.id << " " << student1.firstName << " " << student1.lastName << " " << student1.gpa << endl;
+
     char input;
+    cin >> input;
     big_int *num1; //a pointer variable to point to big_int data
     num1 = new big_int; //allocate memory in heap and store the address in num1
     big_int *num2 = new big_int; //declare num2 as a dynamic variable

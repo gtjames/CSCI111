@@ -6,3 +6,4 @@ Tools/gh.py
 .DS_Store
 a.out
 *.o
+Info.plist
