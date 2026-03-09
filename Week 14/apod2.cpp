@@ -84,4 +84,25 @@ int main(int argc, char* argv[]) {
     cout << "Lat: "        << j["lat"] << endl;
     cout << "Lon: "        << j["lon"] << endl;
     cout << "City:"        << j["city"] << endl;
+
+    string weatherData = fetch("https://api.openweathermap.org/data/3.0/onecall?appid=d069f3bb4cdfd9920b9ce2c73df016f8&lat=32.753177&lon=-97.3327459&exclude=minutely,hourly");
+    json weather = json::parse(weatherData);
+    cout << weatherData << endl;
+    cout << "Current Temp: " << weather["current"]["temp"] << "K\n";
+    for (auto& day : weather["daily"]){
+        long dt = day["dt"];
+        std::time_t t = dt;
+        std::tm* timeInfo = std::localtime(&t);
+
+        std::cout << "Date: "
+                << std::put_time(timeInfo, "%A %Y-%m-%d")
+                << std::endl;
+
+        std::cout << "Max Temp: " << day["temp"]["max"] << std::endl;
+        std::cout << "Min Temp: " << day["temp"]["min"] << std::endl;
+
+        std::cout << "--------------------" << std::endl;
+    }
+
+    return 0;    
 }
