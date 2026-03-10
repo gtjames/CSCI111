@@ -2,6 +2,8 @@
 #include <fstream>
 #include <string>
 #include <curl/curl.h>
+#include <iomanip>
+#include <ctime>
 #include "json.hpp"
 
 using json = nlohmann::json;
@@ -49,7 +51,7 @@ string fetch(string url) {
 }
 
 void getAPOD(int argc, char* argv[]) {
-    string nasaKey = "Aw0TZ7aE7e6WJnh4t7plOXEk1xdbCg45NMqfUX42";
+    string nasaKey = "DEMO_KEY"; // Replace with your actual NASA API key
 
     string api = "https://api.nasa.gov/planetary/apod?api_key=" + nasaKey;;
     if (argc > 1) {
@@ -85,17 +87,19 @@ int main(int argc, char* argv[]) {
     cout << "Lon: "        << j["lon"] << endl;
     cout << "City:"        << j["city"] << endl;
 
-    string weatherData = fetch("https://api.openweathermap.org/data/3.0/onecall?appid=d069f3bb4cdfd9920b9ce2c73df016f8&lat=32.753177&lon=-97.3327459&exclude=minutely,hourly");
+    string weatherData = fetch("https://api.openweathermap.org/data/3.0/onecall?appid="
+        "key" "&lat=32.753177&lon=-97.3327459&exclude=minutely,hourly");
     json weather = json::parse(weatherData);
     cout << weatherData << endl;
     cout << "Current Temp: " << weather["current"]["temp"] << "K\n";
     for (auto& day : weather["daily"]){
         long dt = day["dt"];
-        std::time_t t = dt;
+        std::time_t t = dt + weather["timezone_offset"].get<int>();        
         std::tm* timeInfo = std::localtime(&t);
 
         std::cout << "Date: "
-                << std::put_time(timeInfo, "%A %Y-%m-%d")
+                << std::put_time(timeInfo, "%A %Y-%m-%d") << "  "
+                << std::put_time(timeInfo, "%H:%M")
                 << std::endl;
 
         std::cout << "Max Temp: " << day["temp"]["max"] << std::endl;
