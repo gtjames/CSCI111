@@ -1,0 +1,48 @@
+# compiler name
+CXX = g++
+
+# c++ compiler flags
+# -c : just do preprocess; compile and assemble into object files
+# -g: adds debugging information to the executable file
+# - Wall turns on most, but not  all, compiler warnings
+# -std=c++17 uses c++17 standard
+# put all the required flags separated by space
+CXXFLAGS = -c -g -Wall -std=c++17
+
+# the build target executable file; .exe is not required
+PROGRAM = lineup
+
+# list all .cpp files separated by space
+CPPFILES = lineup.cpp direction.cpp
+TEST_FILES = $(wildcard tests/*.cpp)
+
+# make all rule/default rule that'll be run when we run "make"
+# first compile each file to object file
+# then make a single binary program
+all:
+	$(CXX) $(CXXFLAGS) $(CPPFILES)
+	$(CXX) -o $(PROGRAM) *.o
+
+# make clean rule
+# delete object and binary files
+clean:
+	rm -f $(PROGRAM) *.o
+
+# add a rule to run the program
+run:
+	./$(PROGRAM)
+
+# add 4 more commands to test the 4 input files
+kattis_test:
+	cat asc.in | ./$(PROGRAM) | diff - asc.out
+	cat desc.in | ./$(PROGRAM) | diff - desc.out
+	cat neither.in | ./$(PROGRAM) | diff - neither.out
+	@echo "All kattis test cases passed!"
+
+assert:
+	./$(PROGRAM) test
+
+doctest:
+	$(CXX) -std=c++17 -I tests $(TEST_FILES) direction.cpp -o doctest_runner
+	./doctest_runner
+	

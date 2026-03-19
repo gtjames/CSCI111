@@ -1,0 +1,4 @@
+brew install curl
+brew install nlohmann-json
+g++ apod.cpp -o apod -lcurl
+https://github.com/nlohmann/json/releases/latest/download/json.hpp
