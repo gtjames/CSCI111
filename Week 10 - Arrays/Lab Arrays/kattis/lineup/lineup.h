@@ -3,6 +3,6 @@
 
 #include <string>
 
-std::string direction(std::string* names, int count);
+std::string direction(std::string names[], int count);
 
 #endif
