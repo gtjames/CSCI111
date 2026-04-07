@@ -5,7 +5,9 @@
 
 using namespace std;
 
-
+int compare(const void* a, const void* b) {
+    return *(int*)a - *(int*)b; // ascending order
+}
 int main() {
     int *numbers;
     int count;
@@ -18,7 +20,9 @@ int main() {
     }
 
     // Sort the array
-    sort(numbers, numbers + count);
+    qsort(numbers, count, sizeof(int), compare);
+    
+    // sort(numbers, numbers + count);
  
     // Sum odd and even positions
     int oddSum = 0, evenSum = 0;

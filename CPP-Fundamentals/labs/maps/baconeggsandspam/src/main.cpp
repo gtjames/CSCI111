@@ -15,10 +15,16 @@ Algorithm steps:
 4. After reading all lines, print each item and the associated names in alphabetical order
 
 */
+#include <iostream>
+#include <map>
+#include <vector>
+#include <string>
+#include <set>
 #include "bacon.h"
 
 int main(int argc, char *argv[])
 {
-    // FIXME4 - call the right functions to solve the problem
+    // FIXED4 - call the right functions to solve the problem
+    solve();
     return 0;
 }

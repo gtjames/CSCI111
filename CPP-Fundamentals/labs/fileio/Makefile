@@ -4,7 +4,7 @@ CXXFLAGS = -c -g -Wall -std=c++17
 PROGRAM = fileio.exe
 
 # list .cpp files separated by space
-SRC = $(wildcard src/*.cpp)
+SRC        = $(wildcard src/*.cpp)
 TEST_FILES = $(wildcard tests/*.cpp)
 
 all: build doctest run clean

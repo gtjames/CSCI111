@@ -7,3 +7,4 @@ Tools/gh.py
 a.out
 *.o
 Info.plist
+*.exe

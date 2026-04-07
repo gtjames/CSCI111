@@ -1,5 +1,5 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-#include "../../doctest/doctest.h" // FIXME: adjust the path as needed
+#include "../../doctest/doctest.h" // FIXED: adjust the path as needed
 #include "../src/fileio.h"
 
 TEST_CASE("Testing read_data function")
@@ -7,12 +7,18 @@ TEST_CASE("Testing read_data function")
     SUBCASE("Sub Case 1: Valid file with numbers")
     {
         // assume data/input1.txt exists with 7 test data
-        vector<int> numbers(7, 0);
+        vector<int> numbers(0);
         string input_file = "data/input1.txt"; // make sure this file exists with test data
         read_data(numbers, input_file);
+        cout << "\nNumbers read from file: ";
         CHECK(numbers.size() == 7); // assuming input1.txt has 7 numbers
-        CHECK(numbers[0] == 100);   // adjust expected values as per your input test file
+        CHECK(numbers[0] == 40);   // adjust expected values as per your input test file
         CHECK(numbers[1] == 10);
+        CHECK(numbers[2] == 50);
+        CHECK(numbers[3] == 20);
+        CHECK(numbers[4] == 60);
+        CHECK(numbers[5] == 30);
+        CHECK(numbers[6] == 70);
     }
     // FIXME7: Write 2nd test case for read_data function
 }
@@ -59,6 +65,13 @@ TEST_CASE("Testing find_median function")
     {
         vector<int> numbers = {5, 3, 8, 1, 4};
         float expected = 4.0f; // sorted: {1,3,4,5,8}
+        float result = find_median(numbers);
+        CHECK(fabs(result - expected) <= EPSILON);
+    }
+    SUBCASE("Sub Case 2: Even number of elements")
+    {
+        vector<int> numbers = {5, 3, 8, 1};
+        float expected = 4.0f; // sorted: {1,3,5,8}
         float result = find_median(numbers);
         CHECK(fabs(result - expected) <= EPSILON);
     }

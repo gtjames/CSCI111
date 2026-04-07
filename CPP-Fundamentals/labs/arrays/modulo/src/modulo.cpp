@@ -7,8 +7,8 @@ using ui = unsigned int;
 // Function to get num modulo 42
 unsigned int get_modulo_42(ui num)
 {
-    // FIXME4: return num modulo 42
-    return 0;
+    // FIXED4: return num modulo 42
+    return num % 42;
 }
 
 // Function to read data into the array
@@ -43,7 +43,10 @@ size_t count_flags(const bool flags[], size_t flags_len)
     size_t count = 0;
     for (int i = 0; i < flags_len; i++)
     {
-        // FIXME5: if the flags at index i is set to true, increment count by 1
+        // FIXED5: if the flags at index i is set to true, increment count by 1
+        if (flags[i])
+            count++;
     }
+    // count = count_if(flags, flags + flags_len, true);
     return count;
 }

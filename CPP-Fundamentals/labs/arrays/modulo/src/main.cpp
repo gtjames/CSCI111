@@ -3,7 +3,7 @@ Kattis - Module
 Arrays Lab
 Updated By: FIXME
 CSCI 111
-Date: FIXME
+Date: FIXED1    March 25, 2026
 
 Read and solve the Kattis problem: https://open.kattis.com/problems/modulo
 
@@ -23,6 +23,7 @@ Algorithm Steps:
 
 using namespace std;
 using ui = unsigned int;
+#define FLAGS_LEN 42
 
 int main(int argc, char *argv[])
 {
@@ -31,13 +32,16 @@ int main(int argc, char *argv[])
 
   // create a dynamic unsigned int array of size 10 to store numbers
   ui *nums = new ui[10];
+
   // read 10 numbers into nums array
   read_data(nums, 10);
-  // create a dynamic boolean array of size 42 to store num % 42 flags
+
+  // create a dynami./m  boolean array of size 42 to store num % 42 flags
   bool *flags = new bool[42];
   init_flags(flags, 42);
   update_flags(nums, flags, 10);
-  // FIXME3 - call count_flags function passing proper
+  // FIXED3 - call count_flags function passing proper
   // argument and print the result
+  cout << count_flags(flags, 42) << endl;
   return 0;
 }

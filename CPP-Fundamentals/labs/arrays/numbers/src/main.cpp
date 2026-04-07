@@ -33,13 +33,15 @@ int main(int argc, char *argv[])
 			int max, min;
 			find_max_min(nums, size, max, min);
 			printf("Max = %u\n", max);
-			// FIXME1: print Min value
+			// FIXED1: print Min value
+			printf("Min = %u\n", min);
 			break;
 		case 3:
 			printf("Sum = %lld\n", find_sum(nums, size));
 			break;
 		case 4:
-			// FIXME2: call bubble_sort to sort the array
+			// FIXED2: call bubble_sort to sort the array
+			bubble_sort(nums, size);
 			cout << "Array sorted successfully.\n";
 			break;
 		case 5:

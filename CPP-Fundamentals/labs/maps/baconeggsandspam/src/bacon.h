@@ -11,6 +11,6 @@ using map_str_set = map<string, set<string>>;
 
 // function prototypes
 vector<string> split_string(const string &line);
-map_str_set read_items(int n);
+map_str_set read_items(map_str_set mss, int n);
 void print_items(const map_str_set &items);
 void solve();
